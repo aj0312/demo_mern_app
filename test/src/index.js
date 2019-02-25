@@ -15,21 +15,26 @@ const Book = (book) => {
         </span>
     )
 }
-const Library = ({books}) => {
-    return (
-        <div>
-            {books.map(
-                (book, i) =>
-                    <Book
-                        key={i}
-                        title={book.title}
-                        author={book.author}
-                        pages={book.pages}
-                    />
-            )}
-        </div>
-    )
+
+class Library extends React.Component {
+    render() {
+        const {books} = this.props
+        return(
+            <div>
+                {books.map(
+                    (book, i) =>
+                        <Book
+                            key={i}
+                            title={book.title}
+                            author={book.author}
+                            pages={book.pages}
+                        />
+                )}
+            </div>
+        )
+    }
 }
+
 render(
     <Library books={bookList} />,
   document.getElementById('root')
