@@ -1,4 +1,7 @@
 import React from 'react'
+import './common/step'
+import './common/field'
+import StepComponent from './common/step';
 
 
 const SuccessElement = () => {
@@ -47,29 +50,25 @@ class UserRegistration extends React.Component {
     }
 
     render() {
-        if(!this.state.status)
-        return (
+        let fieldData = [
+            {text: "Email Id", name: "email_id", type:'text'},
+            {text: "Password", name: "password", type:'password'},
+        ]
+        return (!this.state.status) ?
+        (
             <div>
-                <h4>Step1</h4>
+                <StepComponent step="Step1" />
                 <form id={this.props.step_number} method="Post">
-                    <div>
-                        <label>Email Id: </label>
-                        <input name="email_id" type='text' />
-                    </div>
-                    <br />
-                    <div>
-                        <label>Password: </label>
-                        <input name="password" type='password' />
-                    </div>
-                    <br />
+                    {this.fieldData.map(field => {
+                        //will add code here to make it DRY
+                    })}
                     <div>
                         <input onClick={this.handleSubmit} type="submit" value="Submit" />
                     </div>
                 </form>
             </div>
         )
-        else
-        return (
+        : (
             <div>
                 <SuccessElement />
             </div>
