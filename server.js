@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const mongoOp = require('./mongo')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const router = express.Router();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json())
+app.use(cors({credentials: true, origin: true}))
 
 router.route('/users')
       .get((req, res) => {
@@ -23,7 +25,7 @@ router.route('/users')
                             .digest('base64')
         db.save(err => {
           console.log(err)
-          res.json({response: err?'error':'success'})
+          res.json({status: err?false:true})
         })
 
       })
