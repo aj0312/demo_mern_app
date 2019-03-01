@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Field = data => {
+const Field = ({text, name, type}) => {
     return (
         <div>
-            <label>{data.text}: </label>
-            <input name={data.name} type={data.type} />
+            <label>{text}: </label>
+            <input name={name} type={type} />
             <br/>
         </div>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import './common/step'
 import './common/field'
 import StepComponent from './common/step';
+import Field from './common/field';
 
 
 const SuccessElement = () => {
@@ -59,8 +60,15 @@ class UserRegistration extends React.Component {
             <div>
                 <StepComponent step="Step1" />
                 <form id={this.props.step_number} method="Post">
-                    {this.fieldData.map(field => {
+                    {fieldData.map((field, i) => {
                         //will add code here to make it DRY
+                        return (
+                            <Field 
+                            key={i}
+                            text={field.text}
+                            name={field.name}
+                            type={field.type} />
+                        )
                     })}
                     <div>
                         <input onClick={this.handleSubmit} type="submit" value="Submit" />
