@@ -6,12 +6,11 @@ import Field from './common/field';
 
 
 const SuccessElement = () => {
-        return (
-            <h3>
-                Registration Successful
-            </h3>
-        )
-    
+    return (
+        <h3>
+            Registration Successful
+        </h3>
+    )    
 }
 
 class UserRegistration extends React.Component {
