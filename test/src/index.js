@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import UserRegistration from './user_registration'
+import Main from './crud/main'
 
 // const bookList = [
 //     {title: 'Book1', pages: 290, author: 'Anon'},
@@ -37,6 +38,7 @@ import UserRegistration from './user_registration'
 // }
 
 render(
-    <UserRegistration step_number="Step1" />,
+    // <UserRegistration step_number="Step1" />,
+  <Main />,
   document.getElementById('root')
 )
