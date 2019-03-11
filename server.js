@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const mongoOp = require('./mongo')
+// const mongoOp = require('./mongo')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const router = express.Router();
@@ -16,7 +16,7 @@ router.route('/users')
         console.log(req.query);
         console.log(res)
       }).post((req, res) => {
-        let db = new mongoOp();
+        let db = new mongoToDoConn();
         console.log(req);
 
         db.userEmail = req.body.email_id
@@ -32,12 +32,17 @@ router.route('/users')
 
       })
 
-app.use('/', router)
-router.route('/', (req, res) => 
+// app.use('/', router)
+router.route('/').get( (req, res) => {
   Todo.find(
-    (err, todos) => (err) ? console.log(err) : res.json(todos)
+    (err, todos) => { 
+      if(err) 
+        console.log(err) 
+      else 
+        res.json(todos)
+      }
   )
-)
+})
 router.route('/:id').get(
   (req, res) => {
     let id = req.params.id
@@ -49,7 +54,7 @@ router.route('/:id').get(
 router.route('/update/:id').post(
   (req, res) => {
     Todo.findById(req.params.id, 
-      (err, res) => {
+      (err, todo) => {
         if (!todo)
           res.status(404).send(`data not found`)
         else
@@ -67,7 +72,7 @@ router.route('/update/:id').post(
     })
 })
 
-router.route('/add', 
+router.route('/add').post( 
   (req, res) => {
     let todo = new Todo(req.body)
     todo.save()
