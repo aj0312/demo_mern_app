@@ -72,6 +72,17 @@ router.route('/update/:id').post(
     })
 })
 
+router.route('/delete/:id').post(
+  (req, res) => {
+    Todo.findByIdAndDelete({_id: req.params.id})
+        .then(todo => {
+          const result = (todo === null)?`Document does not exist`:`Document deleted`
+          res.json(result)
+        })
+        .catch(error => res.status(400).send(`Could not delete document. sorry.`))
+  }
+)
+
 router.route('/add').post( 
   (req, res) => {
     let todo = new Todo(req.body)

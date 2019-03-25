@@ -8,8 +8,9 @@ const Todo = props => (
         <td className={props.todo.todo_completed? 'completed' : ''}>{props.todo.todo_description}</td>
         <td className={props.todo.todo_completed? 'completed' : ''}>{props.todo.todo_responsible}</td>
         <td className={props.todo.todo_completed? 'completed' : ''}>{props.todo.todo_priority}</td>
-        <td>
-            <Link to={`/edit/${props.todo._id}`}>Edit</Link>
+        <td colSpan={2}>
+            <Link to={`/edit/${props.todo._id}`}>Edit</Link><br />
+            <Link to={`/delete/${props.todo._id}`}>Delete</Link>
         </td>
     </tr>
 )
@@ -47,7 +48,7 @@ export default class TodoList extends Component {
                             <th>Description</th>
                             <th>Responsible</th>
                             <th>Priority</th>
-                            <th>Action</th>
+                            <th colSpan={2}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
